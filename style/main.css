@@ -20,6 +20,8 @@
   --muted:       rgba(240,240,232,0.44);
   --accent:      #4cd4b0;
   --accent-glow: rgba(76,212,176,0.18);
+  --modal-bg:    rgba(255,255,255,0.055);
+  --overlay-bg:  rgba(0,0,0,0.55);
 
   --nav-h:   68px;
   --pad-x:   clamp(20px, 6vw, 80px);
@@ -46,6 +48,8 @@
     --muted:       rgba(10,10,8,0.44);
     --accent:      #0d9b7a;
     --accent-glow: rgba(13,155,122,0.14);
+    --modal-bg:    #f4f4ee;
+    --overlay-bg:  color-mix(in srgb, #f4f4ee 82%, transparent);
   }
 }
 
@@ -64,6 +68,8 @@
   --muted:       rgba(240,240,232,0.44);
   --accent:      #4cd4b0;
   --accent-glow: rgba(76,212,176,0.18);
+  --modal-bg:    rgba(255,255,255,0.055);
+  --overlay-bg:  rgba(0,0,0,0.55);
 }
 
 /* ── TOKENS: MANUAL LIGHT ─────────────────────── */
@@ -81,6 +87,8 @@
   --muted:       rgba(10,10,8,0.44);
   --accent:      #0d9b7a;
   --accent-glow: rgba(13,155,122,0.14);
+  --modal-bg:    #f4f4ee;
+  --overlay-bg:  color-mix(in srgb, #f4f4ee 82%, transparent);
 }
 
 /* ── RESET ────────────────────────────────────── */
@@ -175,6 +183,11 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
   transition: color 0.2s, background 0.2s;
 }
 .nav-links a:hover { color: var(--text); background: var(--g-bg-h); }
+.nav-links a.active {
+  color: var(--text);
+  background: var(--g-bg-h);
+  border: 1px solid var(--g-border);
+}
 .nav-links a.nav-cta {
   color: var(--accent);
   background: var(--accent-glow);
@@ -478,7 +491,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
 /* ── MODAL ────────────────────────────────────── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 200;
-  background: rgba(0,0,0,0.55);
+  background: var(--overlay-bg);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   display: flex; align-items: flex-end; justify-content: center;
   opacity: 0; pointer-events: none; transition: opacity 0.3s;
@@ -486,7 +499,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
 .modal-overlay.open { opacity: 1; pointer-events: auto; }
 .modal {
   width: 100%; max-width: 980px; max-height: 91svh; overflow-y: auto;
-  background: var(--g-bg);
+  background: var(--modal-bg);
   backdrop-filter: blur(40px) saturate(200%); -webkit-backdrop-filter: blur(40px) saturate(200%);
   border: 1px solid var(--g-border); border-bottom: none;
   box-shadow: inset 0 1px 0 var(--g-hi), 0 -24px 80px rgba(0,0,0,0.5);
@@ -499,7 +512,7 @@ button { cursor: pointer; font: inherit; border: none; background: none; }
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 28px; border-bottom: 1px solid var(--g-border);
   position: sticky; top: 0;
-  background: var(--g-bg); backdrop-filter: var(--g-blur); -webkit-backdrop-filter: var(--g-blur);
+  background: var(--modal-bg); backdrop-filter: var(--g-blur); -webkit-backdrop-filter: var(--g-blur);
   z-index: 1;
 }
 .modal-header-title { font-size: 13px; font-weight: 700; color: var(--muted); }

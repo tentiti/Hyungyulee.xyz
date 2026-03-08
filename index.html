@@ -163,7 +163,6 @@
                 style="margin-top: 6px; color: var(--accent); font-weight: 600"
               >
                 Cum Laude &nbsp;&middot;&nbsp; GPA 3.98 / 4.3
-                &nbsp;&middot;&nbsp; Graduated Feb 2026
               </div>
             </div>
           </div>
@@ -178,15 +177,6 @@
             </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-year">2016 - 2018</div>
-            <div class="timeline-content">
-              <div class="timeline-title">Seoul Global High School</div>
-              <div class="timeline-sub">
-                International Curriculum
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -728,6 +718,49 @@
         if (e.key === "Escape") closeModal();
       });
 
+      /* ── NAV ACTIVE ON SCROLL ───────────────────────── */
+      function setupNavActive() {
+        const links = Array.from(
+          document.querySelectorAll('.nav-links a[href^="#"]'),
+        ).filter((link) => link.getAttribute("href") !== "#");
+        const sections = links
+          .map((link) => document.querySelector(link.getAttribute("href")))
+          .filter(Boolean);
+
+        if (!links.length || !sections.length) return;
+
+        const setActive = (id) => {
+          links.forEach((link) =>
+            link.classList.toggle("active", link.getAttribute("href") === `#${id}`),
+          );
+        };
+
+        const updateActiveFromScroll = () => {
+          const navH = document.querySelector(".nav")?.offsetHeight ?? 68;
+          const probeY = window.scrollY + navH + 120;
+          let current = sections[0];
+
+          sections.forEach((section) => {
+            if (probeY >= section.offsetTop) current = section;
+          });
+
+          setActive(current.id);
+        };
+
+        links.forEach((link) => {
+          link.addEventListener("click", () => {
+            const id = link.getAttribute("href").slice(1);
+            setActive(id);
+          });
+        });
+
+        window.addEventListener("scroll", updateActiveFromScroll, {
+          passive: true,
+        });
+        window.addEventListener("resize", updateActiveFromScroll);
+        updateActiveFromScroll();
+      }
+
       /* ── FILTERS ─────────────────────────────────────── */
       function buildFilters() {
         const order = ["All", "AI", "Creativity", "Computer Science"];
@@ -755,6 +788,7 @@
       }
 
       /* ── BOOT ────────────────────────────────────────── */
+      setupNavActive();
       buildFilters();
       renderGrid(PROJECTS);
     </script>
