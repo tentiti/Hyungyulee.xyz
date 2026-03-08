@@ -14,6 +14,13 @@
 </head>
 <body>
 
+  <!-- ── BACKGROUND ────────────────────────────── -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
   <!-- ── NAV ───────────────────────────────────────── -->
   <nav class="nav">
     <a href="#" class="nav-logo">Hyungyu Lee</a>
@@ -22,7 +29,7 @@
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#works">Works</a>
-      <a href="mailto:hello@hyungyulee.xyz">&#8599; Email</a>
+      <a href="mailto:hello@hyungyulee.xyz" class="nav-cta">&#8599; Email</a>
     </div>
   </nav>
 
@@ -43,8 +50,10 @@
     </div>
   </section>
 
+  <div class="page-body">
+
   <!-- ── ABOUT ─────────────────────────────────────── -->
-  <section class="section" id="about">
+  <section class="section-card" id="about">
     <p class="section-label">About</p>
     <div class="about-grid">
       <div class="about-photo">
@@ -70,7 +79,7 @@
   </section>
 
   <!-- ── EXPERIENCE ────────────────────────────────── -->
-  <section class="section" id="experience">
+  <section class="section-card" id="experience">
     <p class="section-label">Experience</p>
     <div class="timeline">
 
@@ -141,7 +150,7 @@
   </section>
 
   <!-- ── EDUCATION ─────────────────────────────────── -->
-  <section class="section" id="education">
+  <section class="section-card" id="education">
     <p class="section-label">Education</p>
     <div class="timeline">
 
@@ -174,15 +183,17 @@
   </section>
 
   <!-- ── WORKS ─────────────────────────────────────── -->
-  <section id="works" style="border-bottom: 1px solid var(--border);">
-    <div class="section" style="border-bottom: 1px solid var(--border); padding-bottom: 0;">
-      <p class="section-label" style="margin-bottom: 32px;">Works</p>
-      <div class="filters" id="filters" style="padding-bottom: 32px;">
+  <section class="section-card" id="works">
+    <div class="works-header">
+      <p class="section-label">Works</p>
+      <div class="filters" id="filters">
         <button class="filter-btn active" data-filter="All">All</button>
       </div>
     </div>
     <div class="projects-grid" id="projects-grid"></div>
   </section>
+
+  </div><!-- /.page-body -->
 
   <!-- ── FOOTER ─────────────────────────────────────── -->
   <footer class="footer">
